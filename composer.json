@@ -1,11 +1,11 @@
 {
     "autoload": {
+        "classmap": ["database/"],
         "psr-4": {
             "Chat\\": "src/"
         }
     },
     "autoload-dev": {
-        "classmap": ["database/"],
         "psr-4": {
             "Tests\\": "tests/"
         }
@@ -16,7 +16,8 @@
         "php": "7.4.1",
         "respect/validation": "^1.1",
         "fzaninotto/faker": "^1.9",
-        "vlucas/phpdotenv": "^4.1"
+        "vlucas/phpdotenv": "^4.1",
+        "robmorgan/phinx": "^0.11.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"

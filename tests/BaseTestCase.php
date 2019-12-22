@@ -64,7 +64,7 @@ abstract class BaseTestCase extends TestCase
     protected function createApplication(): App
     {
         // Use the application settings
-        $settings = require ROOT.'/app/settings.php';
+        $settings = require __DIR__.'/../app/settings.php';
         // Instantiate the application
         $app = new App($settings);
         require ROOT.'app/dependencies.php';
