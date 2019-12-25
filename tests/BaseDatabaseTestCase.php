@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use FakeFactory;
 use Illuminate\Database\DatabaseManager;
 use Phinx\Console\PhinxApplication;
 use Symfony\Component\Console\Input\StringInput;
@@ -12,9 +13,13 @@ class BaseDatabaseTestCase extends BaseTestCase
 {
     protected DatabaseManager $db;
 
+    protected FakeFactory $factory;
+
     protected function setUp(): void
     {
         parent::setUp();
+        require_once ROOT.'database/FakeFactory.php';
+        $this->factory = new FakeFactory();
         $this->runMigration();
         $this->db = $this->app->getContainer()->get('db')->getDatabaseManager();
     }
