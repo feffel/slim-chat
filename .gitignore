@@ -1,4 +1,8 @@
+slim.sqlite
+.phpunit.result.cache
 .env
+
+public/tests
 vendor/
 .idea/
 

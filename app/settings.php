@@ -21,11 +21,11 @@ return [
         // Database settings
         'database'               => [
             'driver'    => getenv('DB_CONNECTION'),
-            'database'  => ROOT.getenv('DB_DATABASE'),
+            'database'  => getenv('DB_DATABASE'),
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
         ],
-        'cors'                   => getenv('CORS_ALLOWED_ORIGINS') ?? '*',
+        'cors' => getenv('CORS_ALLOWED_ORIGINS') ?? '*',
     ],
 ];
