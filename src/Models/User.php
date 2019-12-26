@@ -23,15 +23,20 @@ class User extends Model
 {
     public function messages()
     {
-        return $this->hasMany();
+        return $this->hasMany(Message::class, 'author_id');
     }
 
     public function conversations()
     {
-        return $this->belongsToMany();
+        return $this->belongsToMany(Conversation::class, 'conversation_participants');
     }
 
     public function sendMessage(Message $message, Conversation $conversation): void
     {
+        $message->assertNotSent();
+        $conversation->assertUserIsParticipant($this);
+        $message->author()->associate($this);
+        $message->conversation()->associate($conversation);
+        $message->save();
     }
 }
