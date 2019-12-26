@@ -8,7 +8,7 @@ use Throwable;
 
 class MessageAlreadySentException extends InvalidArgumentException
 {
-    private CONST E_CODE = 103;
+    public CONST E_CODE = 103;
 
     public function __construct(string $message = '', Throwable $previous = null)
     {

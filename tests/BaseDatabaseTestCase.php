@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Tests;
 
+use Chat\Models\Conversation;
+use Chat\Models\Message;
+use Chat\Models\User;
 use FakeFactory;
 use Illuminate\Database\DatabaseManager;
 use Phinx\Console\PhinxApplication;
@@ -65,5 +68,20 @@ class BaseDatabaseTestCase extends BaseTestCase
             $builder->where($filed, $value);
         }
         $this->assertFalse($builder->count() > 0, 'Database has unwanted records in table '.$table);
+    }
+
+    protected function createUser(): User
+    {
+        return $this->factory->of(User::class)->create();
+    }
+
+    protected function createConversation(): Conversation
+    {
+        return $this->factory->of(Conversation::class)->create();
+    }
+
+    protected function createMessage(): Message
+    {
+        return $this->factory->of(Message::class)->create();
     }
 }

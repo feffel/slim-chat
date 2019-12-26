@@ -13,8 +13,8 @@ use Illuminate\Support\Carbon;
  * @property int        id
  * @property Collection messages       Messages in this conversation
  * @property Collection participants   Participants in this conversation
- * @property Carbon  updated_at
- * @property Carbon  created_at
+ * @property Carbon     updated_at
+ * @property Carbon     created_at
  *
  * @package Chat\Models
  */
@@ -31,5 +31,9 @@ class Conversation extends Model
     public function participants()
     {
         return $this->belongsToMany();
+    }
+
+    public function assertUserIsParticipant(User $user): void
+    {
     }
 }

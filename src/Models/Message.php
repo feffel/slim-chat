@@ -13,13 +13,16 @@ use Illuminate\Support\Carbon;
  * @property string       content
  * @property User         author       Author of this message
  * @property Conversation conversation Conversation containing this message
- * @property Carbon  updated_at
- * @property Carbon  created_at
+ * @property Carbon       updated_at
+ * @property Carbon       created_at
  *
  * @package Chat\Models
  */
 class Message extends Model
 {
+
+    protected $fillable = ['content'];
+
     public function author()
     {
         return $this->belongsTo();
@@ -28,5 +31,9 @@ class Message extends Model
     public function conversation()
     {
         return $this->belongsTo();
+    }
+
+    public function assertNotSent(): void
+    {
     }
 }

@@ -8,7 +8,7 @@ use Throwable;
 
 class ForbiddenConversationException extends InvalidArgumentException
 {
-    private CONST E_CODE = 102;
+    public CONST E_CODE = 102;
 
     public function __construct(string $message = '', Throwable $previous = null)
     {

@@ -14,8 +14,8 @@ use Illuminate\Support\Carbon;
  * @property string     username
  * @property Collection messages      Messages sent by this user
  * @property Collection conversations Conversations accessible by this user
- * @property Carbon  updated_at
- * @property Carbon  created_at
+ * @property Carbon     updated_at
+ * @property Carbon     created_at
  *
  * @package Chat\Models
  */
@@ -29,5 +29,9 @@ class User extends Model
     public function conversations()
     {
         return $this->belongsToMany();
+    }
+
+    public function sendMessage(Message $message, Conversation $conversation): void
+    {
     }
 }
