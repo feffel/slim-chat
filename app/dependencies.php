@@ -1,9 +1,14 @@
 <?php
 declare(strict_types=1);
 
-// DIC configuration
-use Chat\Services\Database\EloquentServiceProvider;
 
 $container = $app->getContainer();
+
 // App Service Providers
-$container->register(new EloquentServiceProvider());
+$container->register(new \Chat\Services\Database\EloquentServiceProvider());
+
+// Request Validator
+$container['validator'] = function ($container) {
+    \Respect\Validation\Validator::with('\\Chat\\Validation\\Rules');
+    return new \Chat\Validation\Validator();
+};

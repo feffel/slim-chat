@@ -17,14 +17,16 @@
         "respect/validation": "^1.1",
         "fzaninotto/faker": "^1.9",
         "vlucas/phpdotenv": "^4.1",
-        "robmorgan/phinx": "^0.11.3"
+        "robmorgan/phinx": "^0.11.3",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "^8.5"
     },
     "scripts": {
         "post-install-cmd": [
-            "@php -r \"file_exists('.env') || copy('.env.dist', '.env'); \""
+            "@php -r \"file_exists('.env') || copy('.env.dist', '.env'); \"",
+            "@php -r \"touch('slim.sqlite')\""
         ],
         "test": "vendor/bin/phpunit tests"
     }

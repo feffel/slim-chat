@@ -28,39 +28,6 @@ abstract class BaseTestCase extends TestCase
         parent::tearDown();
     }
 
-    /**
-     * @param string            $requestMethod
-     * @param string            $requestUri
-     * @param array|object|null $requestData
-     * @param array             $headers
-     *
-     * @return ResponseInterface|Response
-     */
-    public function runApp(
-        string $requestMethod,
-        string $requestUri,
-        $requestData = null,
-        array $headers = []
-    ): ResponseInterface {
-        $environment = Environment::mock(
-            array_merge(
-                [
-                    'REQUEST_METHOD' => $requestMethod,
-                    'REQUEST_URI'    => $requestUri,
-                    'Content-Type'   => 'application/json',
-                ],
-                $headers
-            )
-        );
-        $request     = Request::createFromEnvironment($environment);
-        if ($requestData !== null) {
-            $request = $request->withParsedBody($requestData);
-        }
-        $response = new Response();
-
-        return $this->app->process($request, $response);
-    }
-
     protected function createApplication(): App
     {
         // Use the application settings
