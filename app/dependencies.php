@@ -12,3 +12,5 @@ $container['validator'] = function ($container) {
     \Respect\Validation\Validator::with('\\Chat\\Validation\\Rules');
     return new \Chat\Validation\Validator();
 };
+
+$container['idAuth'] = fn($c) => new \Chat\Services\Auth\IdAuth($c);

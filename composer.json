@@ -26,7 +26,7 @@
     "scripts": {
         "post-install-cmd": [
             "@php -r \"file_exists('.env') || copy('.env.dist', '.env'); \"",
-            "@php -r \"touch('slim.sqlite')\""
+            "@php -r \"touch('slim.sqlite');\""
         ],
         "test": "vendor/bin/phpunit tests"
     }
