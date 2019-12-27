@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Chat\Models;
 
+use Chat\Exceptions\ForbiddenConversationException;
+use Illuminate\Database\Capsule\Manager as DB;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
@@ -25,15 +27,21 @@ class Conversation extends Model
 
     public function messages()
     {
-        return $this->hasMany();
+        return $this->hasMany(Message::class);
     }
 
     public function participants()
     {
-        return $this->belongsToMany();
+        return $this->belongsToMany(User::class, 'conversation_participants');
     }
 
     public function assertUserIsParticipant(User $user): void
     {
+        throw_unless(
+            $this->participants->contains($user),
+            new ForbiddenConversationException(
+                "User {$user->id} is not a participant in this conversation {$this->id}"
+            )
+        );
     }
 }

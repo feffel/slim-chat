@@ -48,12 +48,6 @@ class CreateMessagesAndConversations extends Migration
 
     public function down()
     {
-        $this->schema->table(
-            'messages',
-            function (Blueprint $table) {
-                $table->dropForeign('conversation_id');
-            }
-        );
         $this->schema->dropIfExists('conversation_participants');
         $this->schema->dropIfExists('conversations');
         $this->schema->dropIfExists('messages');

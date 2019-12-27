@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Chat\Models;
 
+use Chat\Exceptions\MessageAlreadySentException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -20,20 +21,22 @@ use Illuminate\Support\Carbon;
  */
 class Message extends Model
 {
+    protected $touches = ['conversation'];
 
     protected $fillable = ['content'];
 
     public function author()
     {
-        return $this->belongsTo();
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function conversation()
     {
-        return $this->belongsTo();
+        return $this->belongsTo(Conversation::class);
     }
 
     public function assertNotSent(): void
     {
+        throw_if($this->exists, new MessageAlreadySentException("Message {$this->id} previously sent"));
     }
 }
