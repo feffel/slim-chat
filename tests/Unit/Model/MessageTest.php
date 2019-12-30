@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Tests\Unit\Model;
+
 use Chat\Models\Conversation;
 use Chat\Models\Message;
 use Chat\Models\User;

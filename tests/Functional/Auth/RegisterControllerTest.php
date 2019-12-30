@@ -1,6 +1,8 @@
 <?php
 declare(strict_types=1);
 
+namespace Tests\Functional\Auth;
+
 use Chat\Models\User;
 use Tests\ApiTestTrait;
 use Tests\BaseDatabaseTestCase;

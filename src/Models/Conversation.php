@@ -21,6 +21,9 @@ use Illuminate\Support\Carbon;
  */
 class Conversation extends Model
 {
+    public const TABLE = 'conversations';
+    protected $table      = self::TABLE;
+    protected $dateFormat = 'U';
 
     public function __construct(array $attributes = []) { parent::__construct($attributes); }
 

@@ -21,6 +21,10 @@ use Illuminate\Support\Carbon;
  */
 class Message extends Model
 {
+    public const TABLE = 'messages';
+    protected $table      = self::TABLE;
+    protected $dateFormat = 'U';
+
     protected $touches = ['conversation'];
 
     protected $fillable = ['content'];

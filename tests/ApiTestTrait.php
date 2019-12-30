@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use Illuminate\Contracts\Support\Jsonable;
+use Chat\Models\User;
 use Illuminate\Support\Arr;
 use Psr\Http\Message\ResponseInterface;
 use Slim\Http\Environment;
@@ -15,6 +15,7 @@ trait ApiTestTrait
         string $requestMethod,
         string $requestUri,
         $requestData = null,
+        User $auth = null,
         array $headers = []
     ): ResponseInterface {
         $environment = Environment::mock(
@@ -24,10 +25,11 @@ trait ApiTestTrait
                     'REQUEST_URI'    => $requestUri,
                     'Content-Type'   => 'application/json',
                 ],
+                array_filter(['HTTP_AUTHORIZATION' => $auth->id]),
                 $headers
             )
         );
-        $request     = Request::createFromEnvironment($environment);
+        $request = Request::createFromEnvironment($environment);
         if ($requestData !== null) {
             $request = $request->withParsedBody($requestData);
         }

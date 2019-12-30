@@ -21,6 +21,10 @@ use Illuminate\Support\Carbon;
  */
 class User extends Model
 {
+    public const TABLE = 'users';
+    protected $table      = self::TABLE;
+    protected $dateFormat = 'U';
+
     public function messages()
     {
         return $this->hasMany(Message::class, 'author_id');
