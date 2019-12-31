@@ -43,10 +43,6 @@ class ConversationController extends BaseController
 
     public function get(Request $request, Response $response, array $args): Response
     {
-        $validation = $this->validateGetRequest($args);
-        if ($validation->failed()) {
-            return $response->withJson(['errors' => $validation->getErrors()], 400);
-        }
         $conversation = $this->conversationRepo
             ->filterByParticipant($request->getAttribute('user'))
             ->where($this->conversationRepo->alias(Conversation::TABLE, 'id'), '=', $args['id'])
@@ -62,27 +58,9 @@ class ConversationController extends BaseController
     public function search(Request $request, Response $response): Response
     {
         $params = $request->getParams();
-        $validation = $this->validateSearchRequest($params);
-        if ($validation->failed()) {
-            return $response->withJson(['errors' => $validation->getErrors()], 400);
-        }
         $conversation = $this->conversationRepo
             ->getOrCreate($request->getAttribute('user'), $this->userRepo->find($params['user']));
-
         $resource = new Item($conversation, new ConversationTransformer());
         return $response->withJson($this->serialize($resource), 200);
-    }
-
-    protected function validateGetRequest(array $values): Validator
-    {
-        return $this->validator->validateArray($values, ['id' => v::notEmpty()->noWhitespace()->digit(),]);
-    }
-
-    protected function validateSearchRequest(array $values): Validator
-    {
-        return $this->validator->validateArray(
-            $values,
-            ['user' => v::notEmpty()->noWhitespace()->digit(),]
-        );
     }
 }

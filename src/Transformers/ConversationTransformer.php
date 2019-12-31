@@ -35,7 +35,7 @@ class ConversationTransformer extends TransformerAbstract
     public function includeMessages(Conversation $conversation): Collection
     {
         return $this->collection(
-            $conversation->messages->sortByDesc(fn($v, $k) => $v->updated_at)->take(5),
+            $conversation->messages->sortByDesc(fn($k, $v) => $v->updated_at)->take(5),
             new MessageTransformer()
         );
     }
