@@ -1,11 +1,15 @@
 # slim-chat
 
+
+
 ## Setup
 ```
 make build && make up
 make install && make migrate
 ```
 Server will run at `localhost:80`
+
+
 
 
 ## Endpoints
@@ -19,6 +23,8 @@ Server will run at `localhost:80`
 | List messages in a conversation  | GET | `api/conversations/{id}/messages` |  |
 | Get message | GET | `api/conversations/{conversation_id}/messages/{id}` | |
 | Send message | POST | `api/conversations/{conversation_id}/messages` | *body*`{"content": "hello world"}`  |
+
+
 
 
 ## Components
@@ -52,3 +58,16 @@ Customize response data per request
 | `?exclude={field1},{field2}`  | Remove requested fields from the default response |
 
 
+
+## Libraries
+
+Using `slim/slim` framework with `Php7.4`
+
+|  Library  | Usage |
+| -- | -- |
+| `illuminate/database` | Eloquent ORM |
+| `robmorgan/phinx`  | Database migrations and seeds |
+| `fzaninotto/faker`  | Fake factories for seeding and testing |
+| `vlucas/phpdotenv`  | Loading config form .env files |
+| `respect/validation`  | Request validation |
+| `league/fractal`  | Model transformation and serialization |
